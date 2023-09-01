@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Tube</title>
+    <link rel="shortcut icon" href="./img/Icon.png" type="image/x-icon">
+  <!-- Google font (inter)-->
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700&family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- tailwind and daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+   
+</head>
+<body style="font-family: 'Inter', sans-serif;">
+    <header class="max-w-screen-2xl mx-auto px-2 my-2 drop-shadow-md">
+        <div class="navbar bg-base-100">
+            <div class="navbar-start">            
+              <a class="cursor-pointer "><img src="./img/Logo.png" alt=""></a>
+            </div>
+            <div class="nav-center">
+              <button onclick="sortingBtn()" class="btn rounded-md btn-sm px-2 normal-case bg-[#25252533] hover:bg-[#FF1F3D] hover:text-white">Sort by view</button>
+            </div>
+            <div class="navbar-end">
+              <a class="btn bg-[#FF1F3D] hover:bg-[#FF1F3D] rounded-md text-white normal-case">Blog</a>
+            </div>
+          </div>
+         
+    </header>
+
+    <!-- main section -->
+  <main class="max-w-screen-2xl mx-auto px-2 my-2">
+    <div id="categorey-container" class="flex flex-wrap justify-center mx-auto max-w-screen-sm gap-x-4 mt-4 mb-10"></div>
+    
+    <!-- card Container -->
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mx-auto items-center gap-6 max-w-screen-2xl" id="card-container">
+      
+    </div>
+    <div id="NotFound" class="hidden"></div>
+
+    
+
+
+
+
+   
+
+
+  </main>
+    
+<!-- Script -->
+<script src="./script/script.js"></script>
+</body>
+</html>
