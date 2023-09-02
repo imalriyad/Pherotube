@@ -20,7 +20,7 @@ const displayCategory = (data) =>{
 function sorting(data){
   const sorted =data?.data?.sort((a,b)=>{
    return parseInt((b.others.views.replace('K','')) - parseInt(a.others.views.replace('K','')))
-  })
+  })  
   
  }
 
@@ -35,19 +35,19 @@ const sortingBtn = async(categoryId) =>{
 
 
 
+
+// get categoryId
 const btnDiv = document.createElement('div')
 const displayCards = async(categoryId) =>{ 
     const res = await fetch(`https://openapi.programming-hero.com/api/videos/category/${categoryId}`)
     const data = await res.json()
-    
     const NotFound = document.getElementById('NotFound')
     NotFound.innerHTML = ''
     const nodataPage = document.createElement('div')
 
     const sortBtnContainer = document.getElementById('sortBtnContainer')
-    btnDiv.innerHTML = `<button onclick="sortingBtn(${categoryId})" class="btn rounded-md btn-sm px-2 normal-case bg-[#25252533] hover:bg-[#FF1F3D] hover:text-white">Sort by view</button>`
-    sortBtnContainer.appendChild(btnDiv)
-
+    btnDiv.innerHTML = `<button onclick="sortingBtn(${categoryId})" class="btn rounded-md btn-sm px-2 normal-case bg-[#FF1F3D] text-white  hover:bg-[#FF1F3D]">Sort by view</button>`
+    sortBtnContainer.appendChild(btnDiv) 
     
     if (data.data.length === 0) {
     nodataPage.innerHTML = `
@@ -62,21 +62,32 @@ const displayCards = async(categoryId) =>{
   
    }
    CardShow(data)
-     
+   
+  
 }
 
 
+// Card Show
 function CardShow(data){
+
      const cardContainer = document.getElementById('card-container')
      cardContainer.innerHTML = ''
-      let cards = data?.data
+     let cards = data?.data
+
       cards?.forEach((cardDetails) =>{
       const card = document.createElement('div') 
+      const formattedTime = convertTime(cardDetails)
+
       card.innerHTML = `
       <div class="card rounded-[10px]">
        <figure class="h-[200px] relative"><img class="rounded-[10px] h-[200px] w-full" src="${cardDetails.thumbnail}" alt=""/></figure>
-       <div class="text-right absolute right-2 bg-[#171717] p-1 rounded top-40 text-white">
+
+       <div class="text-right text-sm absolute right-2 bg-[#171717] p-1 rounded top-40 text-white">
+          <P> 
+          ${cardDetails.others.posted_date ===''?'': formattedTime}
+          </P>
         </div>
+
       <div class="flex mt-5 ml-2">
         <div>
           <img class="w-[50px] h-[50px] rounded-full" src="${cardDetails.authors[0].profile_picture}" alt="">
@@ -99,6 +110,15 @@ function CardShow(data){
           
     })
   }  
+
+// Convert publish date
+function convertTime(cardDetails) {
+  const totalSeconds = parseFloat(cardDetails.others.posted_date);
+  const hours = Math.floor(totalSeconds / 3600);
+  const min = Math.floor((totalSeconds % 3600) / 60);
+  return `${hours} hours ${min} min ago`;
+}
+
 
 displayCards('1000')
 allCategoryShow()
