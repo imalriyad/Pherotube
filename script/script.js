@@ -108,7 +108,7 @@ function CardShow(data){
           cardContainer.appendChild(card)    
           const timeCard = card.querySelector('.timeCard');
 
-          if (cardDetails.others.posted_date === '') {
+         if (cardDetails.others.posted_date === '') {
           timeCard.classList.remove('bg-[#171717]');
           }    
 
@@ -116,7 +116,6 @@ function CardShow(data){
           timeCard.classList.add('bg-[#171717]');
           }
        
-
           NotFound.classList.add('hidden')      
           
     })
@@ -124,9 +123,9 @@ function CardShow(data){
 
 // Convert publish date
 function convertTime(cardDetails) {
-  const totalSeconds = parseFloat(cardDetails.others.posted_date);
-  const hours = Math.floor(totalSeconds / 3600);
-  const min = Math.floor((totalSeconds % 3600) / 60);
+  const secondsTotal = parseFloat(cardDetails.others.posted_date);
+  const hours = Math.floor(secondsTotal / 3600);
+  const min = Math.floor((secondsTotal % 3600) / 60);
   return `${hours} hours ${min} min ago`;
 }
 
