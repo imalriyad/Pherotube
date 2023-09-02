@@ -10,7 +10,7 @@ const displayCategory = (data) =>{
     const categoreyContainer = document.getElementById('categorey-container')
     const div = document.createElement('div')
     div.innerHTML = `
-    <button onclick="displayCards('${category.category_id}')" class="px-4 active:bg-[#FF1F3D] m-[4px] py-2 bg-[#25252533] rounded-md ">${category.category}</button> 
+    <button onclick="displayCards('${category.category_id}')" class="px-4 active:bg-[#FF1F3D] m-[4px] py-2 bg-[#25252533] rounded-md">${category.category}</button> 
         `
     categoreyContainer.appendChild(div)
       
