@@ -35,7 +35,6 @@ const sortingBtn = async(categoryId) =>{
 
 
 
-
 // get categoryId
 const btnDiv = document.createElement('div')
 const displayCards = async(categoryId) =>{ 
@@ -69,22 +68,22 @@ const displayCards = async(categoryId) =>{
 
 // Card Show
 function CardShow(data){
-
+     
      const cardContainer = document.getElementById('card-container')
      cardContainer.innerHTML = ''
      let cards = data?.data
 
       cards?.forEach((cardDetails) =>{
       const card = document.createElement('div') 
-      const formattedTime = convertTime(cardDetails)
+      const postedTime = convertTime(cardDetails)
 
       card.innerHTML = `
       <div class="card rounded-[10px]">
        <figure class="h-[200px] relative"><img class="rounded-[10px] h-[200px] w-full" src="${cardDetails.thumbnail}" alt=""/></figure>
 
-       <div class="text-right text-sm absolute right-2 bg-[#171717] p-1 rounded top-40 text-white">
+       <div class="text-right timeCard text-sm absolute right-2 bg-[#171717] p-1 rounded top-40 text-white">
           <P> 
-          ${cardDetails.others.posted_date ===''?'': formattedTime}
+          ${cardDetails.others.posted_date !==''? postedTime:''}
           </P>
         </div>
 
@@ -104,9 +103,21 @@ function CardShow(data){
      <div class="ml-[74px] text-[#171717B2]">${cardDetails.others.views} views</div>
     </div>
           
-          `       
+          `   
+ 
           cardContainer.appendChild(card)    
-          NotFound.classList.add('hidden')  
+          const timeCard = card.querySelector('.timeCard');
+
+          if (cardDetails.others.posted_date === '') {
+          timeCard.classList.remove('bg-[#171717]');
+          }    
+
+         else {
+          timeCard.classList.add('bg-[#171717]');
+          }
+       
+
+          NotFound.classList.add('hidden')      
           
     })
   }  
